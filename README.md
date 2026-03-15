@@ -43,18 +43,6 @@ This project is built using **Flask**, **MongoDB**, **HTML/CSS**, and **JavaScri
 
 ---
 
-
-#  Installation
-
-###  Clone Repository
-
-```
-git clone https://github.com/yourusername/finance-tracker.git
-cd finance-tracker
-```
-
----
-
 ### Create Virtual Environment
 
 ```
