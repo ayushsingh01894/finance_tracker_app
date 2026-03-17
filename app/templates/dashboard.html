@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Dashboard</h2>
+
+<div class="dashboard-grid">
+
+<div class="card stat">
+Total Income
+<h2>₹{{income}}</h2>
+</div>
+
+<div class="card stat">
+Total Expense
+<h2>₹{{expense}}</h2>
+</div>
+
+<div class="card stat">
+Balance
+<h2>₹{{balance}}</h2>
+</div>
+
+</div>
+
+<div class="chart-container">
+
+<canvas id="expenseChart"></canvas>
+
+</div>
+<h2>Transaction History</h2>
+
+<table class="transaction-table">
+
+<thead>
+<tr>
+<th>Type</th>
+<th>Category</th>
+<th>Amount</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for t in transactions %}
+
+<tr>
+<td>{{ t.type }}</td>
+<td>{{ t.category }}</td>
+<td>₹{{ t.amount }}</td>
+
+<td>
+<a href="/delete/{{ t._id }}" class="delete-btn">Delete</a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+<script>
+
+const income = {{ income | tojson }};
+const expense = {{ expense | tojson }};
+
+const ctx = document.getElementById('expenseChart');
+
+new Chart(ctx,{
+type:'pie',
+data:{
+labels:['Income','Expense'],
+datasets:[{
+data:[income,expense],
+backgroundColor:[
+'#2ecc71',
+'#e74c3c'
+]
+}]
+}
+})
+
+</script>
+
+{% endblock %}
